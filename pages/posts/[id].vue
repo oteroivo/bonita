@@ -1,17 +1,15 @@
+<template>
+  <!-- you'll need to handle a loading state -->
+  <div v-if="pending">Loading ...</div>
+  <div v-else>
+    <Post title="posts.name"></Post>
+  </div>
+</template>
+
 <script setup>
-useHead({
-  titleTemplate: "My App - %s",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1",
-  charset: "utf-8",
-  meta: [{ name: "description", content: "My amazing site." }],
-  bodyAttrs: {
-    class: "test",
-  },
+const { pending, data: posts } = useLazyFetch("/api/posts");
+watch(posts, (newPosts) => {
+  // Because posts starts out null, you won't have access
+  // to its contents immediately, but you can watch it.
 });
-
-const { data: posts } = await useFetch(
-  "https://jsonplaceholder.typicode.com/posts"
-);
 </script>
-
-<template>casa Page visits: {{ posts }}</template>

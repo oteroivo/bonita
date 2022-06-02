@@ -1,7 +1,5 @@
 <template>
-  <nuxt-link to="/home">
-    <li>{{ id }} - {{ title }}</li>
-  </nuxt-link>
+  <li>{{ id }} - {{ title }}</li>
 </template>
 
 <script>
